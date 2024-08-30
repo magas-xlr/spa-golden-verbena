@@ -6,43 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campos e Requisitos da Tela de Votação</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 
 <body>
 
-    <section class="section">
-        <div class="columns is-centered">
-            <div class="column is-half box">
-                <h1 class="title has-text-centered has-text-primary is-size-2 has-text-weight-bold">
-                    O que você acha do novo design?
-                </h1>
+    <section class="section is-fullheight is-flex is-justify-content-center is-align-items-center ">
 
-                <form action="" method="post">
-                    <fieldset>
-                        
-                        <div class="columns is-centered mt-4">
-                            <div class="control">
-                                <input type="radio" id="otimo" name="voto" value="Ótimo!" required>
-                                <label for="otimo">Ótimo!</label>
-                                <br>
+        <div class="column is-half box  is-flex-direction-column ">
+            <h1 class="title has-text-centered has-text-primary is-size-2 has-text-weight-bold ">
+                O que você acha do novo design?
+            </h1>
 
-                                <input type="radio" id="bom" name="voto" value="Bom, mas pode melhorar">
-                                <label for="bom">Bom, mas pode melhorar</label>
-                                <br>
+            <form action="" method="post" class="is-flex is-flex-direction-column is-align-items-center ">
 
-                                <input type="radio" id="nao-gostei" name="voto" value="Não gostei">
-                                <label for="nao-gostei">Não gostei</label>
-                            </div>
+
+                
+
+                    <fieldset class="control">
+
+                        <div class="field">
+                            <input type="radio" id="otimo" name="voto" value="Ótimo!" required>
+                            <label for="otimo">Ótimo!</label>
+                        </div>
+                        <div class="field">
+                            <input type="radio" id="bom" name="voto" value="Bom, mas pode melhorar" >
+                            <label for="bom">Bom, mas pode melhorar</label>
+                        </div>
+                        <div class="field">
+                            <input type="radio" id="nao-gostei" name="voto" value="Não gostei">
+                            <label for="nao-gostei">Não gostei</label>
                         </div>
                     </fieldset>
 
-                    <div class="columns is-centered mt-4">
-                        <button class="button is-success " type="submit">Enviar voto</button>
-                    </div>
-                </form>
-            </div>
+               
+
+                <button class="button is-success ">Enviar voto</button>
+
+            </form>
         </div>
+
     </section>
 
 </body>
