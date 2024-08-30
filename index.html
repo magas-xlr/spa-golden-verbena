@@ -9,45 +9,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 
-<body>
-
-    <section class="section is-fullheight is-flex is-justify-content-center is-align-items-center ">
-
+<body class="is-flex is-justify-content-center">
+    <section class="section is-fullheight is-flex is-justify-content-center is-align-items-center">
         <div class="column is-half box  is-flex-direction-column ">
-            <h1 class="title has-text-centered has-text-primary is-size-2 has-text-weight-bold ">
+            <h1 class="title has-text-centered has-text-primary is-size-2 has-text-weight-bold">
                 O que você acha do novo design?
             </h1>
-
-            <form action="" method="post" class="is-flex is-flex-direction-column is-align-items-center ">
-
-
-                
-
-                    <fieldset class="control">
-
-                        <div class="field">
-                            <input type="radio" id="otimo" name="voto" value="Ótimo!" required>
-                            <label for="otimo">Ótimo!</label>
-                        </div>
-                        <div class="field">
-                            <input type="radio" id="bom" name="voto" value="Bom, mas pode melhorar" >
-                            <label for="bom">Bom, mas pode melhorar</label>
-                        </div>
-                        <div class="field">
-                            <input type="radio" id="nao-gostei" name="voto" value="Não gostei">
-                            <label for="nao-gostei">Não gostei</label>
-                        </div>
-                    </fieldset>
-
-               
-
-                <button class="button is-success ">Enviar voto</button>
-
+            <form method="post" class="is-flex is-flex-direction-column is-align-items-center">
+                <fieldset class="control">
+                    <div class="field">
+                        <input type="radio" id="otimo" name="voto" value="Ótimo!" required>
+                        <label for="otimo">Ótimo!</label>
+                    </div>
+                    <div class="field">
+                        <input type="radio" id="bom" name="voto" value="Bom, mas pode melhorar">
+                        <label for="bom">Bom, mas pode melhorar</label>
+                    </div>
+                    <div class="field">
+                        <input type="radio" id="nao-gostei" name="voto" value="Não gostei">
+                        <label for="nao-gostei">Não gostei</label>
+                    </div>
+                </fieldset>
+                <button class="button is-success mt-4">Enviar voto</button>
             </form>
         </div>
-
     </section>
-
 </body>
-
-</html>
+</html> 
