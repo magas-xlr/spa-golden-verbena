@@ -5,27 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campos e Requisitos da Tela de Votação</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 
-<body>
-    
-    <h1>O que você acha do novo design?</h1>
-
-    <form action="" method="Post">
-        <div>
-            <input type="radio" name="voto" value="Ótimo!" >
-            <label for="">Ótimo!</label>
+<body class="is-flex is-justify-content-center">
+    <section class="section is-fullheight is-flex is-justify-content-center is-align-items-center">
+        <div class="column is-half box  is-flex-direction-column ">
+            <h1 class="title has-text-centered has-text-primary is-size-2 has-text-weight-bold">
+                O que você acha do novo design?
+            </h1>
+            <form method="post" class="is-flex is-flex-direction-column is-align-items-center">
+                <fieldset class="control">
+                    <div class="field">
+                        <input type="radio" id="otimo" name="voto" value="Ótimo!" required>
+                        <label for="otimo">Ótimo!</label>
+                    </div>
+                    <div class="field">
+                        <input type="radio" id="bom" name="voto" value="Bom, mas pode melhorar">
+                        <label for="bom">Bom, mas pode melhorar</label>
+                    </div>
+                    <div class="field">
+                        <input type="radio" id="nao-gostei" name="voto" value="Não gostei">
+                        <label for="nao-gostei">Não gostei</label>
+                    </div>
+                </fieldset>
+                <button class="button is-success mt-4">Enviar voto</button>
+            </form>
         </div>
-        <div>
-            <input type="radio" name="voto" value="Bom, mas pode melhorar">
-            <label for=""> Bom, mas pode melhorar</label>
-        </div>
-        <div>
-            <input type="radio" name="voto" value="Não gostei">
-            <label for="">Não gostei</label>
-        </div>
-        <button type="Submit">Enviar voto</button>
-    </form>
+    </section>
 </body>
-
-</html>
+</html> 
