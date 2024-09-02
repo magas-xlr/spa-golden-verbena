@@ -30,9 +30,10 @@
                         <label for="nao-gostei">Não gostei</label>
                     </div>
                 </fieldset>
-                
-                <button  class="button is-success mt-4">Enviar voto</button>
-               
+                <button class="button is-success mt-4" id="btnEnviar" disabled>Enviar voto</button>
+                <p id="mensagemErro" class="has-text-danger" style="display: none;">
+                    <strong>Erro:</strong> Selecione uma opção para habilitar o botão.
+                </p>
             </form>
         </div>
     </section>
