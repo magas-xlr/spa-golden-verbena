@@ -1,21 +1,21 @@
-
-document.addEventListener('DOMContentLoaded', function () {
-
-    const btnEnviar = document.querySelector('button');
-    const radios = document.querySelectorAll('input[name="voto"]');
-    const mensagemErro = document.getElementById('mensagemErro');
-    function verificarSelecao() {
-        const Selecionada = Array.from(radios).some(radio => radio.checked);
-        if (Selecionada) {
-            btnEnviar.disabled = false;
-            mensagemErro.style.display = 'none'; // Esconde a mensagem de erro quando uma opção é selecionada
-        } else {
-            btnEnviar.disabled = true;
-            mensagemErro.style.display = 'block'; // Mostra a mensagem de erro quando nenhuma opção é selecionada
-        }
+// Função reutilizável fora do escopo
+function verificarSelecao(opcaoSelecionada, btnEnviar, mensagemErro) {
+    const selecionada = Array.from(opcaoSelecionada).some(opcaoSelecionada => opcaoSelecionada.checked);
+    btnEnviar.disabled = !selecionada; 
+    if (selecionada) {
+        mensagemErro.classList.add('is-hidden');
+    } else {
+        mensagemErro.classList.remove('is-hidden');
     }
-    radios.forEach(radio => {
-        radio.addEventListener('change', verificarSelecao);
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const btnEnviar = document.getElementById('btnEnviar');
+    const opcaoSelecionada = document.querySelectorAll('input[name="voto"]');
+    const mensagemErro = document.getElementById('mensagemErro');
+    opcaoSelecionada.forEach(radio => {
+        radio.addEventListener('change', function () {
+            verificarSelecao(opcaoSelecionada, btnEnviar, mensagemErro);
+        });
     });
-    verificarSelecao();
+    verificarSelecao(opcaoSelecionada, btnEnviar, mensagemErro);
 });
