@@ -1,26 +1,23 @@
+function enviar() {
+    const strong = document.createElement('strong');
+    const text = document.createTextNode('Selecione uma opção antes de enviar.');
+    strong.appendChild(text);
+    strong.classList.add('has-text-danger');
+    document.querySelector('form').appendChild(strong);
+}
 
-function verificarSelecao(opcoesSelecionadas, btnEnviar, mensagemErro) {
-    const selecionada = Array.from(opcoesSelecionadas).some(opcao => opcao.checked);
-    btnEnviar.disabled = !selecionada;
-
-    if (selecionada) {
-        mensagemErro.classList.add('is-hidden'); 
-    } else {
-        mensagemErro.textContent = 'Selecione uma opção antes de enviar.';
-        mensagemErro.classList.remove('is-hidden'); 
+function verificarSelecao(radio) {
+    document.getElementById('btnEnviar').disabled = false;
+    const strong = document.querySelector('strong');
+    if (radio.value) {
+        document.querySelector('form').removeChild(strong);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const btnEnviar = document.getElementById('btnEnviar');
-    const opcoesSelecionadas = document.querySelectorAll('input[name="voto"]');
-    const mensagemErro = document.getElementById('mensagemErro');
+document.getElementById('btnEnviar').addEventListener('click', enviar());
 
-    verificarSelecao(opcoesSelecionadas, btnEnviar, mensagemErro);
-
-    opcoesSelecionadas.forEach(radio => {
-        radio.addEventListener('change', () => {
-            verificarSelecao(opcoesSelecionadas, btnEnviar, mensagemErro);
-        });
+document.querySelectorAll('input[name="voto"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        verificarSelecao(radio);
     });
 });
