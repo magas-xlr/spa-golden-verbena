@@ -1,13 +1,9 @@
 function enviar() {
-    const valores = document.querySelectorAll('input[value=""]');
-    
-    if (valores) {
         const strong = document.createElement('strong');
         const text = document.createTextNode('Selecione uma opção antes de enviar.');
         strong.appendChild(text);
         strong.classList.add('has-text-danger');
         document.querySelector('form').appendChild(strong);
-    }
 }
 
 function verificarSelecao(radio) {
@@ -39,9 +35,3 @@ document.querySelectorAll('input[name="voto"]').forEach(radio => {
         verificarSelecao(radio);
     });
 });
-
-
-
-
-
-
