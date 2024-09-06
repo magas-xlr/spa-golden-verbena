@@ -8,7 +8,6 @@ function enviar() {
         strong.classList.add('has-text-danger');
         document.querySelector('form').appendChild(strong);
     }
-
 }
 
 function verificarSelecao(radio) {
@@ -38,7 +37,6 @@ document.getElementById('btnEnviar').addEventListener('click', recebeURL(), envi
 document.querySelectorAll('input[name="voto"]').forEach(radio => {
     radio.addEventListener('change', () => {
         verificarSelecao(radio);
-
     });
 });
 
