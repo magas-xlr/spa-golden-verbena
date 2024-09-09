@@ -1,4 +1,4 @@
-function send() {
+function erroMessage() {
     const radioSelected = document.querySelectorAll('input[name="voto"]');
     const option = false;
 
@@ -18,10 +18,19 @@ function send() {
     }
 }
 
+function send() {
+    const strong = document.createElement('strong');
+    const text = document.createTextNode('Selecione uma opção antes de enviar.');
+    strong.appendChild(text);
+    strong.classList.add('has-text-danger');
+    document.querySelector('form').appendChild(strong);
+
+}
+
 function checkSelection(radio) {
-    document.getElementById('btnSend').disabled = false;
-    const strong = document.querySelector('strong');
+
     if (radio.value) {
+        const strong = document.querySelector('strong');
         document.querySelector('form').removeChild(strong);
         document.getElementById('btnSend').disabled = false;
     }
@@ -32,11 +41,13 @@ function receiveURL() {
     const parameter = url.searchParams.get('vote');
     const radios = document.querySelectorAll('input[name="voto"]');
 
-    radios.forEach(radio => {
-        if (radio.id === parameter) {
+    if (parameter) {
+        const radio = document.getElementById(parameter);
+
+        if (radio && radio.type === 'radio') {
             radio.checked = true;
         }
-    });
+    }
 }
 
 window.onload = receiveURL;
