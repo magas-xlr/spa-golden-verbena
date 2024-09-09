@@ -1,37 +1,50 @@
-function enviar() {
-    const strong = document.createElement('strong');
-    const text = document.createTextNode('Selecione uma opção antes de enviar.');
-    strong.appendChild(text);
-    strong.classList.add('has-text-danger');
-    document.querySelector('form').appendChild(strong);
-}
+function send() {
+    const radioSelected = document.querySelectorAll('input[name="voto"]');
+    const option = false;
 
-function verificarSelecao(radio) {
-document.getElementById('btnEnviar').disabled = false;
-const strong = document.querySelector('strong');
-if (radio.value) {
-    document.querySelector('form').removeChild(strong);
-}
-}
+    radioSelected.forEach((radio) => {
+        if (radio.checked) {
+            option = true;
+        }
+    });
 
-function recebeURL() {
-const url = new URL(window.location.href);
-const parametro = url.searchParams.get('value');
-let valores = document.querySelectorAll('input[type="radio"]');
-document.getElementById('btnEnviar').disabled = false;
-
-valores.forEach(radio => {
-    if (radio.value === parametro) {
-        radio.checked = true;
-        document.querySelector('form').removeChild(strong);
+    if (!option) {
+        const strong = document.createElement('strong');
+        const text = document.createTextNode('Selecione uma opção antes de enviar.');
+        strong.appendChild(text);
+        strong.classList.add('has-text-danger');
+        document.querySelector('form').appendChild(strong);
+        document.getElementById('btnSend').disabled = true;
     }
-});
 }
 
-document.getElementById('btnEnviar').addEventListener('click', recebeURL(), enviar());
+function checkSelection(radio) {
+    document.getElementById('btnSend').disabled = false;
+    const strong = document.querySelector('strong');
+    if (radio.value) {
+        document.querySelector('form').removeChild(strong);
+        document.getElementById('btnSend').disabled = false;
+    }
+}
+
+function receiveURL() {
+    const url = new URL(window.location.href);
+    const parameter = url.searchParams.get('vote');
+    const radios = document.querySelectorAll('input[name="voto"]');
+
+    radios.forEach(radio => {
+        if (radio.id === parameter) {
+            radio.checked = true;
+        }
+    });
+}
+
+window.onload = receiveURL;
+
+document.getElementById('btnSend').addEventListener('click', send);
 
 document.querySelectorAll('input[name="voto"]').forEach(radio => {
-radio.addEventListener('change', () => {
-    verificarSelecao(radio);
-});
+    radio.addEventListener('change', () => {
+        checkSelection(radio);
+    });
 });
