@@ -20,7 +20,7 @@ function erroMessage() {
 
 function checkSelection(radio) {
     if (radio.value) {
-        const strong = document.querySelector('strong');
+        // const strong = document.querySelector('strong');
         document.querySelector('form').removeChild(strong);
         document.getElementById('btnSend').disabled = false;
     }
@@ -29,19 +29,17 @@ function checkSelection(radio) {
 function receiveURL() {
     const url = new URL(window.location.href);
     const parameter = url.searchParams.get('vote');
-    const radios = document.querySelectorAll('input[name="voto"]');
 
-    if (parameter) {
-        const radio = document.getElementById(parameter);
-        if (radio && radio.type === 'radio') {
-            radio.checked = true;
-        }
+    const radio = document.getElementById(parameter);
+    if (radio && radio.type === 'radio') {
+        radio.checked = true;
+        document.getElementById('btnSend').disabled = false;
     }
 }
 
 window.onload = receiveURL;
 
-document.getElementById('btnSend').addEventListener('click',erroMessage);
+document.getElementById('btnSend').addEventListener('click', erroMessage);
 
 document.querySelectorAll('input[name="voto"]').forEach(radio => {
     radio.addEventListener('change', () => {
