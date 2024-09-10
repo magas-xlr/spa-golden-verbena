@@ -18,17 +18,7 @@ function erroMessage() {
     }
 }
 
-function send() {
-    const strong = document.createElement('strong');
-    const text = document.createTextNode('Selecione uma opção antes de enviar.');
-    strong.appendChild(text);
-    strong.classList.add('has-text-danger');
-    document.querySelector('form').appendChild(strong);
-
-}
-
 function checkSelection(radio) {
-
     if (radio.value) {
         const strong = document.querySelector('strong');
         document.querySelector('form').removeChild(strong);
@@ -43,7 +33,6 @@ function receiveURL() {
 
     if (parameter) {
         const radio = document.getElementById(parameter);
-
         if (radio && radio.type === 'radio') {
             radio.checked = true;
         }
@@ -52,7 +41,7 @@ function receiveURL() {
 
 window.onload = receiveURL;
 
-document.getElementById('btnSend').addEventListener('click', send);
+document.getElementById('btnSend').addEventListener('click',erroMessage);
 
 document.querySelectorAll('input[name="voto"]').forEach(radio => {
     radio.addEventListener('change', () => {
