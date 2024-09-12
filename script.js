@@ -18,11 +18,20 @@ function erroMessage() {
     }
 }
 
+function remodelButton() {
+    const botao = document.querySelector('.disabled');
+    botao.style.cursor = 'pointer';
+    botao.style.opacity = '1';
+}
+
 function checkSelection(radio) {
+    remodelButton();
+
     if (radio.value) {
-        // const strong = document.querySelector('strong');
+        const strong = document.querySelector('strong');
         document.querySelector('form').removeChild(strong);
         document.getElementById('btnSend').disabled = false;
+        remodelButton();
     }
 }
 
@@ -34,6 +43,8 @@ function receiveURL() {
     if (radio && radio.type === 'radio') {
         radio.checked = true;
         document.getElementById('btnSend').disabled = false;
+        remodelButton();
+
     }
 }
 
