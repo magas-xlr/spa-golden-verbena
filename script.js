@@ -14,24 +14,23 @@ function erroMessage() {
         strong.appendChild(text);
         strong.classList.add('has-text-danger');
         document.querySelector('form').appendChild(strong);
-        document.getElementById('btnSend').disabled = true;
     }
 }
 
-function remodelButton() {
-    const botao = document.querySelector('.disabled');
-    botao.style.cursor = 'pointer';
-    botao.style.opacity = '1';
+function unlockButton() {
+    const activateButton = document.querySelector('.disabled');
+    activateButton.classList.remove('disabled');
 }
 
 function checkSelection(radio) {
-    remodelButton();
+    unlockButton();
 
     if (radio.value) {
         const strong = document.querySelector('strong');
-        document.querySelector('form').removeChild(strong);
-        document.getElementById('btnSend').disabled = false;
-        remodelButton();
+        if (strong) {
+            document.querySelector('form').removeChild(strong);
+        }
+        unlockButton();
     }
 }
 
@@ -42,9 +41,7 @@ function receiveURL() {
     const radio = document.getElementById(parameter);
     if (radio && radio.type === 'radio') {
         radio.checked = true;
-        document.getElementById('btnSend').disabled = false;
-        remodelButton();
-
+        unlockButton();
     }
 }
 
