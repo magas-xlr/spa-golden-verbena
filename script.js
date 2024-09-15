@@ -23,7 +23,6 @@ function unlockButton() {
 }
 
 function checkSelection(radio) {
-    unlockButton();
 
     if (radio.value) {
         const strong = document.querySelector('strong');
