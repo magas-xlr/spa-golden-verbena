@@ -14,15 +14,22 @@ function erroMessage() {
         strong.appendChild(text);
         strong.classList.add('has-text-danger');
         document.querySelector('form').appendChild(strong);
-        document.getElementById('btnSend').disabled = true;
     }
 }
 
+function unlockButton() {
+    const activateButton = document.querySelector('.disabled');
+    activateButton.classList.remove('disabled');
+}
+
 function checkSelection(radio) {
+
     if (radio.value) {
-        // const strong = document.querySelector('strong');
-        document.querySelector('form').removeChild(strong);
-        document.getElementById('btnSend').disabled = false;
+        const strong = document.querySelector('strong');
+        if (strong) {
+            document.querySelector('form').removeChild(strong);
+        }
+        unlockButton();
     }
 }
 
@@ -33,7 +40,7 @@ function receiveURL() {
     const radio = document.getElementById(parameter);
     if (radio && radio.type === 'radio') {
         radio.checked = true;
-        document.getElementById('btnSend').disabled = false;
+        unlockButton();
     }
 }
 
