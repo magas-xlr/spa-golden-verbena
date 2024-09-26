@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', start => {
+document.addEventListener('DOMContentLoaded', () => {
     const options = [
         {
             description: 'Ótimo',
@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', start => {
             radio.checked = true;
             unlockButton();
         }
-
     });
 
     function erroMessage() {
