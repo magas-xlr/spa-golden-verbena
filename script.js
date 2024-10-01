@@ -19,24 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'voto';
-        input.id = option.id;
-        input.value = option.id;
+        options.findIndex(option => option.id === 'input');
+        input.value = option.description;
         input.setAttribute('required', option.id === 'otimo' ? 'true' : '');
 
         const label = document.createElement('label');
+        const section = document.createElement('section');
         label.htmlFor = option.id;
         label.textContent = option.description;
-        container.appendChild(input); 
-        container.appendChild(label);
+        section.appendChild(input);
+        section.appendChild(label);
+        container.appendChild(section);
+        input.classList.add('mr-2');
 
         const url = new URL(window.location.href);
-        const parameter = url.searchParams.get('vote');
-        const radio = document.getElementById(parameter);
+        const id = option.id;
+        input.type = 'radio';
+        input.id = id;
+        input.checked = url.searchParams.get('vote') === id;
+        unlockButton();
 
-        if (radio && radio.type === 'radio') {
-            radio.checked = true;
-            unlockButton();
-        }
     });
 
     function erroMessage() {
@@ -53,8 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function unlockButton() {
-        const activateButton = document.querySelector('.disabled');
-        activateButton.classList.remove('disabled');
+        const activateButton = document.querySelector('disabled');
+
+        if (activateButton) {
+            activateButton.classList.remove('disabled');
+        }
     }
 
     function checkSelection(radio) {
