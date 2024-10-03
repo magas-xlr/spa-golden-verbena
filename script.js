@@ -13,9 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'nao-gostei',
         },
     ];
-    const container = document.getElementById('enquete-options');
+
 
     options.forEach(option => {
+
+        const container = document.getElementById('package-options');
+
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'voto';
@@ -37,41 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
         input.type = 'radio';
         input.id = id;
         input.checked = url.searchParams.get('vote') === id;
-        unlockButton();
+        const result = input.checked ? unlockButton() : null;
+
 
     });
-
-    function erroMessage() {
-        const radioSelected = document.querySelectorAll('input[name="voto"]');
-        const urlQuery = Array.from(radioSelected).find(radio => radio.checked);
-
-        if (!urlQuery) {
-            const strong = document.createElement('strong');
-            const text = document.createTextNode('Selecione uma opção antes de enviar.');
-            strong.appendChild(text);
-            strong.classList.add('has-text-danger');
-            document.querySelector('form').appendChild(strong);
-        }
-    }
-
-    function unlockButton() {
-        const activateButton = document.querySelector('disabled');
-
-        if (activateButton) {
-            activateButton.classList.remove('disabled');
-        }
-    }
-
-    function checkSelection(radio) {
-
-        if (radio.value) {
-            const strong = document.querySelector('strong');
-            if (strong) {
-                document.querySelector('form').removeChild(strong);
-            }
-            unlockButton();
-        }
-    }
 
     document.getElementById('btnSend').addEventListener('click', erroMessage);
 
@@ -82,3 +54,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+function erroMessage() {
+    const radioSelected = document.querySelectorAll('input[name="voto"]');
+    const urlQuery = Array.from(radioSelected).find(radio => radio.checked);
+
+    if (!urlQuery) {
+        const strong = document.createElement('strong');
+        const text = document.createTextNode('Selecione uma opção antes de enviar.');
+        strong.appendChild(text);
+        strong.classList.add('has-text-danger');
+        document.querySelector('form').appendChild(strong);
+    }
+}
+
+function unlockButton() {
+    const activateButton = document.querySelector('.disabled');
+
+    if (activateButton) {
+        activateButton.classList.remove('disabled');
+    }
+}
+
+function checkSelection(radio) {
+
+    if (radio.value) {
+        const strong = document.querySelector('strong');
+        if (strong) {
+            document.querySelector('form').removeChild(strong);
+        }
+        unlockButton();
+    }
+}
