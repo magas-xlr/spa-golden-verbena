@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'nao-gostei',
         },
     ];
+const container = document.getElementById('package-options');
 
-
-    options.forEach(option => {
-
-        const container = document.getElementById('package-options');
+options.forEach(option => {
 
         const input = document.createElement('input');
         input.type = 'radio';
@@ -40,8 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         input.type = 'radio';
         input.id = id;
         input.checked = url.searchParams.get('vote') === id;
-        const result = input.checked ? unlockButton() : null;
 
+        if (input.checked) {
+            unlockButton();
+        }
 
     });
 
@@ -65,6 +65,7 @@ function erroMessage() {
         strong.appendChild(text);
         strong.classList.add('has-text-danger');
         document.querySelector('form').appendChild(strong);
+        
     }
 }
 
