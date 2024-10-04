@@ -15,14 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 const container = document.getElementById('package-options');
 
-options.forEach(option => {
+options.forEach((option, index) => {
 
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'voto';
-        options.findIndex(option => option.id === 'input');
         input.value = option.description;
-        input.setAttribute('required', option.id === 'otimo' ? 'true' : '');
+        
+        if (index === 0) {
+            input.setAttribute('required', 'true');
+        }
 
         const label = document.createElement('label');
         const section = document.createElement('section');
