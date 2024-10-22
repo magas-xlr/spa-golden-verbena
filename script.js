@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const options = [
         {
             description: 'Ótimo',
@@ -14,10 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'nao-gostei',
         },
     ];
+
     const container = document.getElementById('package-options');
+    const button = document.getElementById('btnSend');
+    let hasCheckedFromURL = false;
 
     options.forEach((option, index) => {
-
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'voto';
@@ -29,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const label = document.createElement('label');
         const section = document.createElement('section');
-        const button = document.getElementById('btnSend');
 
         label.htmlFor = option.id;
         label.textContent = option.description;
@@ -39,66 +39,74 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(section);
 
         const url = new URL(window.location.href);
-        const id = option.id;
-        input.type = 'radio';
-        input.id = id;
-        input.checked = url.searchParams.get('vote') === id;
+        const checked = url.searchParams.get('vote') === option.id;
+
+        input.id = option.id;
+        input.checked = checked;
         input.classList.add('mr-2');
 
-        button.setAttribute('aria-disabled', 'true');
-        if (input.checked) {
-            unlockButton();
+        if (checked) {
+            hasCheckedFromURL = true;
         }
-
-        document.addEventListener('keydown', (event) => {
-
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                button.click();
-            }
-        });
-
     });
 
-    document.getElementById('btnSend').addEventListener('click', erroMessage);
+    if (hasCheckedFromURL) {
+        unlockButton();
+    } else {
+        button.setAttribute('aria-disabled', 'true');
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const radioSelected = document.querySelector('input[name="voto"]:checked');
+            if (!radioSelected) {
+                event.preventDefault();
+                erroMessage();
+            } else {
+                if (button.getAttribute('aria-disabled') === 'false') {
+                    event.preventDefault();
+                    button.click();
+                }
+            }
+        }
+    });
+
+    button.addEventListener('click', erroMessage);
 
     document.querySelectorAll('input[name="voto"]').forEach(radio => {
         radio.addEventListener('change', () => {
             checkSelection(radio);
         });
     });
+});
 
-});
-botao.addEventListener('click', (e) => {
-    if (botao.getAttribute('aria-disabled') === 'true') {
-        e.preventDefault();
-        console.log('Botão está desativado.');
-    }
-});
 function erroMessage() {
     const radioSelected = document.querySelectorAll('input[name="voto"]');
     const urlQuery = Array.from(radioSelected).find(radio => radio.checked);
+    const form = document.querySelector('form');
+
+    const existingError = form.querySelector('strong');
+    if (existingError) {
+        form.removeChild(existingError);
+    }
 
     if (!urlQuery) {
         const strong = document.createElement('strong');
-        const text = document.createTextNode('Selecione uma opção antes de enviar.');
-        strong.appendChild(text);
+        strong.textContent = 'Selecione uma opção antes de enviar.';
         strong.classList.add('has-text-danger');
-        document.querySelector('form').appendChild(strong);
-
+        form.appendChild(strong);
     }
 }
 
 function unlockButton() {
-    const activateButton = document.getElementById('btnSend')
-
+    const activateButton = document.getElementById('btnSend');
     if (activateButton) {
         activateButton.setAttribute('aria-disabled', 'false');
+        activateButton.disabled = false;
     }
 }
 
 function checkSelection(radio) {
-
     if (radio.value) {
         const strong = document.querySelector('strong');
         if (strong) {
