@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.getElementById('package-options');
     const button = document.getElementById('btnSend');
-    let hasCheckedFromURL = false;
 
     options.forEach((option, index) => {
         const input = document.createElement('input');
@@ -45,16 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
         input.checked = checked;
         input.classList.add('mr-2');
 
-        if (checked) {
-            hasCheckedFromURL = true;
+        const radioChecked = document.querySelector('input[name="voto"]:checked');
+        if (radioChecked) {
+            unlockButton();
+            if (button.getAttribute('aria-disabled') === 'false') {
+                button.click();
+            }
+        } else {
+            button.setAttribute('aria-disabled', 'true');
         }
     });
-
-    if (hasCheckedFromURL) {
-        unlockButton();
-    } else {
-        button.setAttribute('aria-disabled', 'true');
-    }
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -62,11 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!radioSelected) {
                 event.preventDefault();
                 erroMessage();
-            } else {
-                if (button.getAttribute('aria-disabled') === 'false') {
-                    event.preventDefault();
-                    button.click();
-                }
             }
         }
     });
