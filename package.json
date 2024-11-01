@@ -1,14 +1,16 @@
 {
-  "scripts": {
-    "commit": "git-cz"
-  },
-  "devDependencies": {
-    "commitizen": "^4.3.1",
-    "cz-conventional-changelog": "^3.3.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+    "name": "spa-golden-verbena",
+    "version": "1.0.0",
+    "scripts": {
+        "commit": "cz"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "devDependencies": {
+        "commitizen": "^4.3.1",
+        "cz-conventional-changelog": "^3.3.0"
     }
-  }
 }
