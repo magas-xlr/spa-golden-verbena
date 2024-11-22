@@ -1,8 +1,21 @@
 {
   "devDependencies": {
-    "husky": "^9.1.6"
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/js": "^9.15.0",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
+    "husky": "^8.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky install",
+     "test": "echo \"No tests configured\" && exit 0"
   }
 }
