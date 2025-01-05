@@ -16,6 +16,5 @@
   },
   "scripts": {
     "prepare": "husky install",
-     "test": "echo \"No tests configured\" && exit 0"
   }
 }
